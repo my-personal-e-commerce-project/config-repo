@@ -14,7 +14,7 @@ spring:
     mongodb:
       uri: ${MONGODB_HOST}
 meilisearch:
+  api-key: ${MEILISEARCH_API_KEY} 
   host-url: ${MEILISEARCH_HOST}
-  api-key: masterKey123
 server:
   port: 80
