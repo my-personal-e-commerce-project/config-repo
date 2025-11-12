@@ -10,6 +10,12 @@ spring:
         productConsumer-in-0:
           destination: inventory
           group: products-group
+        deletedConsumer-in-0:
+          destination: inventory
+          group: products-group
+        categoryConsumer-in-0:
+          destination: inventory
+          group: products-group
   data:
     mongodb:
       uri: ${MONGODB_HOST}
