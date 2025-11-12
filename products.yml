@@ -17,4 +17,4 @@ meilisearch:
   api-key: ${MEILISEARCH_API_KEY} 
   host-url: ${MEILISEARCH_HOST}
 server:
-  port: 80
+  port: 8001
