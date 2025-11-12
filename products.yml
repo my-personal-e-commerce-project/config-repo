@@ -10,6 +10,7 @@ spring:
         productConsumer-in-0:
           destination: inventory
           group: products-group
+          content-type: application/json
   data:
     mongodb:
       uri: ${MONGODB_HOST}
