@@ -2,6 +2,9 @@ spring:
   application:
     name: products
   cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
     stream:
       kafka:
         binder:
@@ -19,3 +22,12 @@ meilisearch:
   host-url: ${MEILISEARCH_HOST}
 server:
   port: 8002
+resilience4j:
+  circuitbreaker:
+    instances:
+      products:
+        sliding-window-size: 10
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 10000
+        permitted-number-of-calls-in-half-open-state: 3
+        automatic-transition-from-open-to-half-open-enabled: true
