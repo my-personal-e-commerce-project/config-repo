@@ -14,8 +14,5 @@ spring:
       resourceserver:
         jwt:
           issuer-uri: http://${KEYCLOAK_HOST}/realms/${KEYCLOAK_REALM}
-client:
-  product-service:
-    url: ${PRODUCT_HOST}/api/v1
 server:
   port: 8005
