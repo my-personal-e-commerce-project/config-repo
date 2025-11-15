@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: inventory
+  cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
+    stream:
+      kafka:
+        binder:
+          brokers: ${KAFKA_HOST}
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${SPRING_DATASOURCE_URL} 
+    username: ${SPRING_DATASOURCE_USERNAME} 
+    password: ${SPRING_DATASOURCE_PASSWORD} 
+  jpa:
+    hibernate:
+      ddl-auto: update
+server:
+  port: 8001
+resilience4j:
+  circuitbreaker:
+    instances:
+      default:
+        sliding-window-size: 100
+        failure-rate-threshold: 50
