@@ -1,14 +1,15 @@
 spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
   application:
     name: inventory
   cloud:
     openfeign:
       circuitbreaker:
         enabled: true
-    stream:
-      kafka:
-        binder:
-          brokers: ${KAFKA_HOST}
   datasource:
     driver-class-name: org.postgresql.Driver
     url: ${SPRING_DATASOURCE_URL} 
