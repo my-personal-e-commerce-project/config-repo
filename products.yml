@@ -10,8 +10,16 @@ spring:
         binder:
           brokers: ${KAFKA_HOST}
       bindings:
-        productConsumer-in-0:
-          destination: inventory
+        createProduct-in-0:
+          destination: product.created
+          group: products-group
+          content-type: application/json
+        updateProduct-in-0:
+          destination: product.updated
+          group: products-group
+          content-type: application/json
+        deleteProduct-in-0:
+          destination: product.deleted
           group: products-group
           content-type: application/json
   data:
