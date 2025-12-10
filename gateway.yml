@@ -1,1 +1,11 @@
-gateway.yml
+spring:
+  application:
+    name: gateway
+server:
+  port: 8001
+resilience4j:
+  circuitbreaker:
+    instances:
+      default:
+        sliding-window-size: 100
+        failure-rate-threshold: 50
