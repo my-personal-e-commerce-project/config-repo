@@ -9,16 +9,14 @@ resilience4j:
       default:
         sliding-window-size: 100
         failure-rate-threshold: 50
+  cloud:
+    gateway:
+      routes:
+        - id: inventory
+          uri: lb://inventory
+          filters:
+            - CircuitBreaker=name=default,fallbackUri=forward:/fallback/inventory
 eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
-cloud:
-  gateway:
-    routes:
-        - id: example-service
-          uri: http://localhost:9000
-          predicates:
-            - Path=/api/example/**
-          filters:
-            - CircuitBreaker=name=default
