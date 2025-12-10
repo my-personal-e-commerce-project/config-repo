@@ -3,12 +3,6 @@ server:
 spring:
   application:
     name: gateway
-resilience4j:
-  circuitbreaker:
-    instances:
-      default:
-        sliding-window-size: 100
-        failure-rate-threshold: 50
   cloud:
     gateway:
       routes:
@@ -17,7 +11,13 @@ resilience4j:
           predicates:
             - Path=/api/inventory/**
           filters:
-            - CircuitBreaker=name=default,fallbackUri=forward:/fallback/inventory
+            - CircuitBreaker=name=default,fallbackUri=forward:/fallback/inventory      
+resilience4j:
+  circuitbreaker:
+    instances:
+      default:
+        sliding-window-size: 100
+        failure-rate-threshold: 50
 eureka:
   client:
     register-with-eureka: true
