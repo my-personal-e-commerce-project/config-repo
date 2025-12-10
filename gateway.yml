@@ -14,6 +14,8 @@ resilience4j:
       routes:
         - id: inventory
           uri: lb://inventory
+          predicates:
+            - Path=/api/inventory/**
           filters:
             - CircuitBreaker=name=default,fallbackUri=forward:/fallback/inventory
 eureka:
