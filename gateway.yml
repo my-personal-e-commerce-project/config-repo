@@ -9,6 +9,10 @@ resilience4j:
       default:
         sliding-window-size: 100
         failure-rate-threshold: 50
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
 cloud:
   gateway:
     routes:
