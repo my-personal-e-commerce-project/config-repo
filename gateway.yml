@@ -2,7 +2,7 @@ spring:
   application:
     name: gateway
 server:
-  port: 8001
+  port: 8003
 resilience4j:
   circuitbreaker:
     instances:
