@@ -9,11 +9,9 @@ spring:
         - id: inventory
           uri: lb://inventory
           predicates:
-            - Path=/api/inventory/**
+            - Path=/api/v1/**
           filters:
-            - RewritePath=/api/inventory/(?<segment>/?.*), /${segment}
             - CircuitBreaker=name=default,fallbackUri=forward:/fallback/inventory
-
 resilience4j:
   circuitbreaker:
     instances:
