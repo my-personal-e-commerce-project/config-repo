@@ -12,6 +12,36 @@ spring:
             - Path=/api/v1/products/**
           filters:
             - CircuitBreaker=name=default,fallbackUri=forward:/fallback/inventory
+  cloud:
+    gateway:
+      # Filtros que se aplican a TODAS las rutas
+      default-filters:
+        - AddResponseHeader=X-Gateway, Spring-Cloud-Gateway
+      
+      routes:
+        # Servicio de Inventory
+        - id: inventory-service
+          uri: http://localhost:8081
+          predicates:
+            - Path=/inventory/**
+          filters:
+            - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: inventoryCircuitBreaker
+                fallbackUri: forward:/fallback/inventory
+            - name: Retry
+              args:
+                retries: 3
+                statuses: BAD_GATEWAY,SERVICE_UNAVAILABLE
+      
+      # CORS
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
 resilience4j:
   circuitbreaker:
     instances:
