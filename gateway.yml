@@ -9,7 +9,7 @@ spring:
         - id: inventory
           uri: lb://inventory
           predicates:
-            - Path=/api/inventory/**
+            - Path=/api/v1/products
           filters:
             - CircuitBreaker=name=default,fallbackUri=forward:/fallback/inventory      
 resilience4j:
