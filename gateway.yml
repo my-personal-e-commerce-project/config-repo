@@ -16,13 +16,3 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka
-logging:
-  level:
-    # 1. ¡ESTE ES EL CRUCIAL! Muestra todo el flujo interno de rutas y filtros.
-    org.springframework.cloud.gateway: TRACE
-    
-    # 2. Útil para ver cómo el Load Balancer resuelve 'lb://inventory' a la IP:Puerto.
-    org.springframework.cloud.loadbalancer: DEBUG
-    
-    # 3. Muestra detalles de la red subyacente (qué intenta conectar).
-    reactor.netty: DEBUG
