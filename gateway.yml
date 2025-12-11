@@ -46,3 +46,9 @@ eureka:
     client:
         register-with-eureka: true
         fetch-registry: true
+logging:
+  level:
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.cloud.gateway.route: TRACE
+    org.springframework.cloud.loadbalancer: DEBUG # Para el lb://inventory
+    reactor.netty.http.client: DEBUG # Para ver la conexión HTTP saliente
