@@ -10,10 +10,10 @@ spring:
       routes:
         - id: fallback_route
           uri: forward:/fallback
-          predicates:
-            - Path=/fallback/**
-          filters:
-            - StripPrefix=1
+          predicates:
+            - Path=/fallback/**
+          filters:
+            - StripPrefix=1
         # Servicio de Inventory
         - id: inventory
           uri: lb://inventory
