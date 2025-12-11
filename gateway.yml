@@ -5,11 +5,15 @@ spring:
     name: gateway
   cloud:
     gateway:
-      # Filtros que se aplican a TODAS las rutas
       default-filters:
         - AddResponseHeader=X-Gateway, Spring-Cloud-Gateway
-      
       routes:
+        - id: fallback_route
+          uri: forward:/fallback
+          predicates:
+            - Path=/fallback/**
+          filters:
+            - StripPrefix=1
         # Servicio de Inventory
         - id: inventory
           uri: lb://inventory
@@ -25,7 +29,6 @@ spring:
               args:
                 retries: 3
                 statuses: BAD_GATEWAY,SERVICE_UNAVAILABLE
-      
       # CORS
       globalcors:
         corsConfigurations:
