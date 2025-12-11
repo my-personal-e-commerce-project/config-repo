@@ -10,7 +10,7 @@ spring:
           uri: lb://inventory
           predicates:
             - Path=/inventory/**
-        filters:
+          filters:
             - RewritePath=/inventory/(?<remaining>.*), /${remaining} <--- COMENTA ESTO
 eureka:
   client:
