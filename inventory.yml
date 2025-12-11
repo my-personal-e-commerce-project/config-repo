@@ -33,9 +33,3 @@ resilience4j:
       default:
         sliding-window-size: 100
         failure-rate-threshold: 50
-logging:
-  level:
-    org.springframework.cloud.gateway.route: TRACE
-    org.springframework.http.server.reactive: DEBUG
-    org.springframework.cloud.loadbalancer: DEBUG
-    reactor.netty.http.client: DEBUG
