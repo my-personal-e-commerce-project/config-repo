@@ -9,7 +9,9 @@ spring:
         - id: inventory_route
           uri: lb://inventory
           predicates:
-            - Path=/api/v1/**
+            - Path=/inventory/**
+        filters:
+            - RewritePath=/inventory/(?<remaining>.*), /${remaining} <--- COMENTA ESTO
 eureka:
   client:
     serviceUrl:
