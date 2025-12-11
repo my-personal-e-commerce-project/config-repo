@@ -1,54 +1,18 @@
 server:
     port: 8003
 spring:
-    application:
-        name: gateway
-    cloud:
-        gateway:
-            default-filters:
-                - AddResponseHeader=X-Gateway, Spring-Cloud-Gateway
-            routes:
-                - id: fallback_route
-                  uri: forward:/fallback
-                  predicates:
-                    - Path=/fallback/**
-                  filters:
-                    - StripPrefix=1
-                # Servicio de Inventory
-                - id: inventory
-                  uri: lb://inventory
-                  predicates:
-                    - Path=/inventory/**
-                  filters:
-                    - StripPrefix=1
-                    - name: CircuitBreaker
-                      args:
-                        name: inventoryCircuitBreaker
-                        fallbackUri: forward:/fallback/inventory
-                    - name: Retry
-                      args:
-                        retries: 3
-                        statuses: BAD_GATEWAY,SERVICE_UNAVAILABLE # Opcional: cámbialo a lista YAML si da problemas
-            # CORS
-            globalcors:
-                corsConfigurations:
-                    '[/**]':
-                        allowedOrigins: "*"
-                        allowedMethods: "*"
-                        allowedHeaders: "*"
-resilience4j:
-    circuitbreaker:
-        instances:
-            default:
-                sliding-window-size: 100
-                failure-rate-threshold: 50
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: inventory_route
+          uri: lb://INVENTORY
+          predicates:
+            - Path=/inventory/**
+          filters:
+            - RewritePath=/inventory/(?<remaining>.*), /${remaining}
 eureka:
-    client:
-        register-with-eureka: true
-        fetch-registry: true
-logging:
-  level:
-    org.springframework.cloud.gateway: TRACE
-    org.springframework.cloud.gateway.route: TRACE
-    org.springframework.cloud.loadbalancer: DEBUG # Para el lb://inventory
-    reactor.netty.http.client: DEBUG # Para ver la conexión HTTP saliente
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
