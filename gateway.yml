@@ -7,7 +7,7 @@ spring:
     gateway:
       routes:
         - id: inventory_route
-          uri: lb://INVENTORY
+          uri: lb://inventory
           predicates:
             - Path=/inventory/**
           filters:
