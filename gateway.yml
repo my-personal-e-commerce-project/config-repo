@@ -26,4 +26,4 @@ logging:
     
     # 3. Muestra detalles de la red subyacente (qué intenta conectar).
     reactor.netty: DEBUG
-        failure-rate-threshold: 50
+    failure-rate-threshold: 50
