@@ -11,7 +11,7 @@ spring:
           predicates:
             - Path=/inventory/**
           filters:
-            - RewritePath=/inventory/(?<remaining>.*), /${remaining} <--- COMENTA ESTO
+            - RewritePath=/inventory/(?<remaining>.*), /${remaining}
 eureka:
   client:
     serviceUrl:
