@@ -33,3 +33,6 @@ resilience4j:
       default:
         sliding-window-size: 100
         failure-rate-threshold: 50
+logging:
+  level:
+    org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping: DEBUG
