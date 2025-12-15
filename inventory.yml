@@ -3,7 +3,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://${KEYCLOAK_HOST}/realms/${KEYCLOAK_REALM}
+          issuer-uri: http://${AUTH_HOST}/realms/${AUTH_REALM}
   kafka:
     bootstrap-servers: localhost:9092
     producer:
