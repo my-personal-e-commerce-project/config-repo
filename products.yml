@@ -3,7 +3,7 @@ spring:
     name: products
   cloud:
     function:
-      definition: createProduct;updateProduct;deleteProduct
+      definition: createProduct;updateProduct;deleteProduct;createCategory;updateCategory;deleteCategory
     openfeign:
       circuitbreaker:
         enabled: true
@@ -12,6 +12,18 @@ spring:
         binder:
           brokers: ${KAFKA_HOST}
       bindings:
+        createCategory-in-0:
+          destination: category.created
+          group: products-group
+          content-type: application/json
+        updateCategory-in-0:
+          destination: category.updated
+          group: products-group
+          content-type: application/json
+        deleteCategory-in-0:
+          destination: category.deleted
+          group: products-group
+          content-type: application/json
         createProduct-in-0:
           destination: product.created
           group: products-group
